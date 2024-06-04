@@ -36,6 +36,9 @@
             android:name="com.example.do_an_cs3.Task.AddTaskActivity"
             android:exported="false" />
         <activity
+            android:name="com.example.do_an_cs3.Task.EditTaskActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.do_an_cs3.View.Users.AddProfileActivity"
             android:exported="false" />
         <activity

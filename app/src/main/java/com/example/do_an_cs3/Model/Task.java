@@ -25,6 +25,10 @@ public class Task {
 
     private int  projectId;
 
+    public Task() {
+
+    }
+
     public String getUsername() {
         return username;
     }
@@ -96,6 +100,7 @@ public class Task {
         this.taskEmail = taskEmail;
         this.projectId = projectId;
     }
+
 
     public int getId() {
         return id;

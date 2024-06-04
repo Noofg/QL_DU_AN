@@ -102,12 +102,16 @@ package com.example.do_an_cs3.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -116,8 +120,12 @@ import com.example.do_an_cs3.Database.DatabaseManager;
 import com.example.do_an_cs3.Model.Task;
 import com.example.do_an_cs3.Model.User;
 import com.example.do_an_cs3.R;
+import com.example.do_an_cs3.Task.EditTaskActivity;
 import com.example.do_an_cs3.View.MainActivity;
+import com.example.do_an_cs3.View.Project.DetailProjectActivity;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
@@ -131,12 +139,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     }
 
-    public TaskAdapter(List<Task> tasks, Context mContext) {
+    public TaskAdapter(List<Task> tasks,Context mContext) {
         this.tasks = tasks;
         this.mContext = mContext;
         this.dbManager = new DatabaseManager(mContext);
         this.currentUser = dbManager.getUserInfo(getCurrentUserEmail());
     }
+
 
     @NonNull
     @Override
@@ -162,6 +171,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             holder.content.setText(task.getTaskDescription());
             holder.namePersonUpdate.setText(currentUser.getUserName());
             holder.deadline.setText(task.getTaskDeadline());
+            holder.itemView.setOnLongClickListener(v -> {
+                showPopupMenu(v, position);
+                return true;
+            });
         }
     }
 
@@ -194,5 +207,45 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public String getCurrentUserEmail() {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         return sharedPreferences.getString("user_email", null); // Trả về null nếu không tìm thấy email
+    }
+    private void showPopupMenu(View view, int position) {
+        Context context = view.getContext();
+        PopupMenu popupMenu = new PopupMenu(context, view);
+        popupMenu.inflate(R.menu.popup_menu);
+        try {
+            @SuppressLint("PrivateApi")
+            Field mPopup = PopupMenu.class.getDeclaredField("mPopup");
+            mPopup.setAccessible(true);
+            Object menuPopupHelper = mPopup.get(popupMenu);
+            Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
+            Method setGravity = classPopupHelper.getMethod("setGravity", int.class);
+            setGravity.invoke(menuPopupHelper, Gravity.END);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        popupMenu.setOnMenuItemClickListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.action_edit) {
+                Intent intent = new Intent(context, EditTaskActivity.class);
+                intent.putExtra("task_id", tasks.get(position).getId());
+                context.startActivity(intent);
+                return true;
+            } else if (itemId == R.id.action_delete) {
+               deleteTask(position);
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        popupMenu.show();
+    }
+    private void deleteTask(int position) {
+        Task task = tasks.get(position);
+        dbManager.deleteTask(task.getId());
+        tasks.remove(position);
+        notifyItemRemoved(position);
+        Toast.makeText(mContext, "xoá thành công", Toast.LENGTH_SHORT).show();
     }
 }

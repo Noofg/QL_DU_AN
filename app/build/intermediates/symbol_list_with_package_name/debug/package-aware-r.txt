@@ -3306,7 +3306,9 @@ id action_bar_subtitle
 id action_bar_title
 id action_container
 id action_context_bar
+id action_delete
 id action_divider
+id action_edit
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -3368,6 +3370,7 @@ id btnShareTask
 id btnViewMore
 id btnback
 id butonThenext
+id butonUpdate
 id button
 id buttonComback
 id buttonDate
@@ -3467,6 +3470,7 @@ id east
 id edge
 id editAddNameJob
 id editAddNameProject
+id editNameJob
 id editTextAddress
 id editTextAddressAdd
 id editTextConfirmpass
@@ -4036,6 +4040,7 @@ layout activity_addproject
 layout activity_choose_role
 layout activity_detail_project
 layout activity_edit_account
+layout activity_edit_task
 layout activity_login
 layout activity_main
 layout activity_personnal
@@ -4144,6 +4149,7 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 layout view_anychart
 menu mune_buttom_navigation
+menu popup_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap logo

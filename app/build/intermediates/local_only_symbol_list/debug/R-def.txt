@@ -130,6 +130,8 @@ id TimeUpdateTask
 id accountAvt
 id action_FirstFragment_to_SecondFragment
 id action_SecondFragment_to_FirstFragment
+id action_delete
+id action_edit
 id addTag
 id addTask
 id add_job
@@ -153,6 +155,7 @@ id btnShareTask
 id btnViewMore
 id btnback
 id butonThenext
+id butonUpdate
 id button
 id buttonComback
 id buttonDate
@@ -179,6 +182,7 @@ id deparment_name
 id discussionContainer
 id editAddNameJob
 id editAddNameProject
+id editNameJob
 id editTextAddress
 id editTextAddressAdd
 id editTextConfirmpass
@@ -305,6 +309,7 @@ layout activity_addproject
 layout activity_choose_role
 layout activity_detail_project
 layout activity_edit_account
+layout activity_edit_task
 layout activity_login
 layout activity_main
 layout activity_personnal
@@ -335,6 +340,7 @@ layout item_task
 layout item_user
 layout item_user_follow
 menu mune_buttom_navigation
+menu popup_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap logo

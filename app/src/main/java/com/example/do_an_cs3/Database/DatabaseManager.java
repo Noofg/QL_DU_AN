@@ -36,7 +36,14 @@ public class DatabaseManager {
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final int CODE_LENGTH = 8;
     private static final SecureRandom RANDOM = new SecureRandom();
+    private static final String DATABASE_NAME = "tasks_database";
+    private static final int DATABASE_VERSION = 1;
 
+    private static final String TABLE_TASKS = "Tasks";
+    private static final String COLUMN_ID = "task_id";
+    private static final String COLUMN_TASK_NAME = "task_name";
+    private static final String COLUMN_TASK_DESCRIPTION = "task_description";
+    private static final String COLUM_TASK_DEADLINE= "deadline";
     public DatabaseManager(Context context) {
         dbhelper = new Database(context);
         db = dbhelper.getWritableDatabase();
@@ -526,6 +533,48 @@ public class DatabaseManager {
         }
         return project;
     }
+    public void deleteTask(int taskId) {
+         db = this.dbhelper.getWritableDatabase();
+        db.delete("Tasks", "task_id = ?", new String[]{String.valueOf(taskId)});
+        db.close();
+    }
+    @SuppressLint("Range")
+    public Task getTaskById(int taskId) {
+        db = this.dbhelper.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_TASKS, new String[]{COLUMN_ID, COLUMN_TASK_NAME, COLUMN_TASK_DESCRIPTION,COLUM_TASK_DEADLINE},
+                COLUMN_ID + "=?", new String[]{String.valueOf(taskId)}, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Task task = new Task();
+        task.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+        task.setTaskName(cursor.getString(cursor.getColumnIndex(COLUMN_TASK_NAME)));
+        task.setTaskDescription(cursor.getString(cursor.getColumnIndex(COLUMN_TASK_DESCRIPTION)));
+        task.setTaskDeadline(cursor.getString(cursor.getColumnIndex(COLUM_TASK_DEADLINE)));
+
+        cursor.close();
+        db.close();
+
+        return task;
+    }
+    public boolean updateTask(int taskId, String taskName, String taskDescription, String deadline) {
+        db = this.dbhelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("task_name", taskName);
+        values.put("task_description", taskDescription);
+        values.put("deadline", deadline);
+        //values.put("status", status);
+
+        // Cập nhật bản ghi
+        int rowsAffected = db.update("Tasks", values, "task_id = ?", new String[]{String.valueOf(taskId)});
+
+        db.close();
+
+        // Trả về true nếu có ít nhất một dòng bị ảnh hưởng
+        return rowsAffected > 0;
+    }
+
+
 
 
 }

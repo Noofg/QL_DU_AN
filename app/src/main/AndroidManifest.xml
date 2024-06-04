@@ -21,6 +21,9 @@
             android:name=".Task.AddTaskActivity"
             android:exported="false" />
         <activity
+            android:name=".Task.EditTaskActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.Users.AddProfileActivity"
             android:exported="false" />
         <activity
