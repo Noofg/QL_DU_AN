@@ -2153,6 +2153,7 @@ color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
+color task
 color tooltip_background_dark
 color tooltip_background_light
 color viewpager
@@ -3306,9 +3307,7 @@ id action_bar_subtitle
 id action_bar_title
 id action_container
 id action_context_bar
-id action_delete
 id action_divider
-id action_edit
 id action_image
 id action_menu_divider
 id action_menu_presenter
@@ -3356,7 +3355,7 @@ id btnAddDiscussion
 id btnBack
 id btnConfirmComplete
 id btnDelete
-id btnDeleteTask
+id btnDeleteProject
 id btnEditExtend
 id btnHistory
 id btnImportant
@@ -3370,13 +3369,13 @@ id btnShareTask
 id btnViewMore
 id btnback
 id butonThenext
-id butonUpdate
 id button
 id buttonComback
 id buttonDate
 id buttonHome
 id buttonPanel
 id buttonSeacrh
+id buttonThenext
 id buttonUpdate
 id buttonWarning
 id buttonadd
@@ -3400,6 +3399,7 @@ id chaneAvata
 id chanepass
 id checkBox
 id checkbox
+id checkboxTask
 id checked
 id chronometer
 id chucvu
@@ -3470,7 +3470,6 @@ id east
 id edge
 id editAddNameJob
 id editAddNameProject
-id editNameJob
 id editTextAddress
 id editTextAddressAdd
 id editTextConfirmpass
@@ -3572,9 +3571,14 @@ id lnFrameRegister
 id lnIdOrg
 id lnImageViewAdd
 id lnLeader
+id lnPause
 id lnPersonally
 id lnQRcode
 id lnRCVTask
+id lnShare
+id lnTaskCompleteNew
+id lnTuChoi
+id lnXacNhanHoanThanh
 id locale
 id loginEditTextEmail
 id loginEditTextPassword
@@ -4040,7 +4044,7 @@ layout activity_addproject
 layout activity_choose_role
 layout activity_detail_project
 layout activity_edit_account
-layout activity_edit_task
+layout activity_edit_project
 layout activity_login
 layout activity_main
 layout activity_personnal
@@ -4149,7 +4153,6 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 layout view_anychart
 menu mune_buttom_navigation
-menu popup_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap logo

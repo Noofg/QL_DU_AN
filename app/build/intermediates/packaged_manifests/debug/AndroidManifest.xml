@@ -33,6 +33,9 @@
         android:testOnly="true"
         android:theme="@style/Theme.DO_AN_CS3" >
         <activity
+            android:name="com.example.do_an_cs3.View.Project.EditProjectActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.do_an_cs3.Task.AddTaskActivity"
             android:exported="false" />
         <activity
@@ -48,7 +51,7 @@
             android:name="com.example.do_an_cs3.View.Users.ChooseRoleActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.do_an_cs3.View.splash"
+            android:name="com.example.do_an_cs3.View.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,7 +64,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.do_an_cs3.View.MainActivity"
+            android:name="com.example.do_an_cs3.View.Users.LoginActivity"
             android:exported="false" >
             <meta-data
                 android:name="android.app.Activity"
@@ -118,9 +121,9 @@
             android:label="AddDeparmentsActivity"
             android:theme="@style/Theme.DO_AN_CS3" />
         <activity
-            android:name="com.example.do_an_cs3.View.Users.LoginActivity"
+            android:name="com.example.do_an_cs3.View.splash"
             android:exported="false"
-            android:label="LoginActivity"
+            android:label="plashActivity"
             android:theme="@style/Theme.DO_AN_CS3" />
         <activity
             android:name="com.example.do_an_cs3.View.Users.RegisterActivity"
